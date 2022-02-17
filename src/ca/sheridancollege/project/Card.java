@@ -2,7 +2,7 @@
  * SYST 17796 Project Base code.
  * Students can modify and extend to implement their game.
  * Add your name as an author and the date!
- *Date: Feb 17 2022
+ *Date: Feb 17 2022 Qiong
  */
 package ca.sheridancollege.project;
 
@@ -27,3 +27,4 @@ public abstract class Card {
 
 //added comment for test - Oldri
 //add comment -Qiong
+
