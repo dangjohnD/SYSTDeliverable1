@@ -11,7 +11,7 @@ package ca.sheridancollege.project;
  * game. Students wishing to add to the code should remember to add themselves as a modifier.
  *
  * @author dancye
- * @author Suhjin
+ * @author Suhjin_Min
  */
 public abstract class Card {
     //default modifier for child classes
