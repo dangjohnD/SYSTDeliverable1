@@ -6,8 +6,6 @@
  */
 package ca.sheridancollege.project;
 
-public class Card {
-=======
 /**
  * A class to be used as the base Card class for the project. Must be general enough to be instantiated for any Card
  * game. Students wishing to add to the code should remember to add themselves as a modifier.
@@ -15,7 +13,7 @@ public class Card {
  * @author dancye
  * @author Suhjin_Min
  */
-public abstract class Card {
+public class Card {
     //default modifier for child classes
 
     public enum Suit {
@@ -58,6 +56,5 @@ public abstract class Card {
         return suit.name() + "-" + point.name();
     }
 }
-=======
 //added comment for test - Oldri
 //add comment -Qiong
