@@ -17,12 +17,10 @@ import java.util.ArrayList;
  */
 public abstract class Game {
 
-    private final String name;//the title of the game
-    private ArrayList<Player> players;// the players of the game
+    private final String name=null;//the title of the game
+    private Player player;// the players of the game
 
-    public Game(String name) {
-        this.name = name;
-        players = new ArrayList();
+    public Game() {
     }
 
     /**
@@ -30,20 +28,6 @@ public abstract class Game {
      */
     public String getName() {
         return name;
-    }
-
-    /**
-     * @return the players of this game
-     */
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
-
-    /**
-     * @param players the players of this game
-     */
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
     }
 
     /**
