@@ -4,8 +4,15 @@
  * Add your name as an author and the date!
  */
 package ca.sheridancollege.project;
-
 import java.util.*;
+=======
+/**
+ * A class that models each Player in the game. Players have an identifier, which should be unique.
+ *
+ * @author dancye
+ * @author Paul Bonenfant Jan 2020
+ * @author Suhjin Min Feb 17 2022
+ */
 public abstract class Player {
 
     private String name;
