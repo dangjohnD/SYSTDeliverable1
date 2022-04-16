@@ -5,45 +5,53 @@
  */
 package ca.sheridancollege.project;
 
-/**
- * A class that models each Player in the game. Players have an identifier, which should be unique.
- *
- * @author dancye
- * @author Paul Bonenfant Jan 2020
- */
+import java.util.*;
 public abstract class Player {
 
-    private String name; //the unique name for this player
+    private String name;
+    private ArrayList<Card> hand = new ArrayList<>();
 
-    /**
-     * A constructor that allows you to set the player's unique ID
-     *
-     * @param name the unique ID to assign to this player.
-     */
+    abstract boolean canPlay();
+
+    abstract boolean wantToPlay();
+
     public Player(String name) {
         this.name = name;
+
     }
 
-    /**
-     * @return the player name
-     */
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+
+    public void setHand(ArrayList<Card> hand) {
+        this.hand = hand;
+    }
+
     public String getName() {
         return name;
     }
 
-    /**
-     * Ensure that the playerID is unique
-     *
-     * @param name the player name to set
-     */
-    public void setName(String name) {
-        this.name = name;
+    public static int getTotalPoints(ArrayList<Card> hand) {
+        // count the points in two ways and select the best for the player 
+        int minTotal = 0; // with C_ACE worth 1 point
+        int maxTotal = 0; // with C_ACE worth 11 point
+        for (Card c : hand) {
+            int points = c.getPoints();
+            minTotal += points;
+            // this would be the count with ACE counting for 11 points
+            maxTotal += (c.getPoint() == Card.Point.C_ACE_1) ? 11 : points;
+        }
+        // return the most favorable outcome. If considering C_ACE is worth 11 points pushes the 
+        // total count beyond 21, return the count where it is worth 1 instead.
+        return (maxTotal > 21) ? minTotal : maxTotal;
     }
 
-    /**
-     * The method to be overridden when you subclass the Player class with your specific type of Player and filled in
-     * with logic to play your game.
-     */
-    public abstract void play();
+    public void addCard(Card card) {
+        hand.add(card);
+    }
 
+    public String toString() {
+        return name;
+    }
 }
