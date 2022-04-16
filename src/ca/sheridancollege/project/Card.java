@@ -2,10 +2,21 @@
  * SYST 17796 Project Base code.
  * Students can modify and extend to implement their game.
  * Add your name as an author and the date!
+ *Date 2022-02-17 -Qiong
  */
 package ca.sheridancollege.project;
 
 public class Card {
+=======
+/**
+ * A class to be used as the base Card class for the project. Must be general enough to be instantiated for any Card
+ * game. Students wishing to add to the code should remember to add themselves as a modifier.
+ *
+ * @author dancye
+ * @author Suhjin_Min
+ */
+public abstract class Card {
+    //default modifier for child classes
 
     public enum Suit {
         CLOVERS, DIAMONDS, SPADES, HEARTS
@@ -47,3 +58,6 @@ public class Card {
         return suit.name() + "-" + point.name();
     }
 }
+=======
+//added comment for test - Oldri
+//add comment -Qiong
