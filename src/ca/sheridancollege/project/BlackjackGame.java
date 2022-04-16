@@ -10,7 +10,7 @@ package ca.sheridancollege.project;
  */
 import java.util.*;
 
-public class BlackjackGame {
+public class BlackjackGame extends Game{
 
     // the deck of cards we will use
     private Deck deckOfCards = new Deck();
