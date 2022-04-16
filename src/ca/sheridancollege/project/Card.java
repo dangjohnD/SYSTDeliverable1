@@ -13,7 +13,7 @@ package ca.sheridancollege.project;
  * @author dancye
  * @author Suhjin_Min
  */
-public class Card {
+public  class Card {
     //default modifier for child classes
 
     public enum Suit {
