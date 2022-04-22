@@ -1,5 +1,11 @@
 package ca.sheridancollege.project;
-
+/**
+ *
+ * Date: 2022-04-16 Authors: Suhjin Min 
+ * John Dang 
+ * Oldri Kecaj 
+ * Qiong Liao
+ */
 public class Move {
 
     private Player person;
@@ -19,7 +25,7 @@ public class Move {
     }
 
     public String toString() {
-        return "Move: " + person.getClass().getSimpleName() + " " + 
-        person.toString() + " take Card " + card.toString() + " for " + card.getPoints() + " points";
+        return person.getClass().getSimpleName() + " " + person.toString()
+                + " take Card " + card.toString() + " worth " + card.getPoints() + " points";
     }
 }

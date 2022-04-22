@@ -1,5 +1,12 @@
 package ca.sheridancollege.project;
 
+/**
+ * Date: 2022-04-16 Authors: 
+ * Suhjin Min 
+ * John Dang 
+ * Oldri Kecaj 
+ * Qiong Liao
+ */
 public class Card {
 
     public enum Suit {
@@ -31,8 +38,7 @@ public class Card {
         if (getPoint().ordinal() <= Point.C_10.ordinal()) {
             return getPoint().ordinal() + 1;
         } else {
-            // value of face cards
-            return 10;		
+            return 10;
         }
     }
 
