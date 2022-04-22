@@ -12,11 +12,6 @@ public class BlackjackPlayer extends Player {
         return getTotalPoints(this.getHand()) < 21;
     }
 
-    @Override
-    boolean wantToPlay() {
-        return getTotalPoints(this.getHand()) < 17;
-    }
-
     public int getBank() {
         return bank;
     }

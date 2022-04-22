@@ -6,9 +6,7 @@ public abstract class Player {
     private String name;
     private ArrayList<Card> hand = new ArrayList<>();
 
-    abstract boolean canPlay();
 
-    abstract boolean wantToPlay();
 
     public Player(String name) {
         this.name = name;
@@ -26,6 +24,12 @@ public abstract class Player {
         return name;
     }
 
+    abstract boolean canPlay();
+
+    public boolean wantToPlay(){
+        return true;
+    }
+ 
     public static int getTotalPoints(ArrayList<Card> hand) {
         int minTotal = 0; 
         int maxTotal = 0; 

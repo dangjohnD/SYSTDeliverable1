@@ -13,7 +13,8 @@ Qiong Liao
 
  */
 
-public class BlackjackGame {
+public class BlackjackGame extends Game {
+
 
     // Deck of cards
     private Deck deckOfCards = new Deck();
@@ -45,9 +46,11 @@ public class BlackjackGame {
         hiddenDealerCard = deckOfCards.removeOneCard();
 
         // Give card to each player
+
         giveNewCard(dealer);
         giveNewCard(player);
 
+        // get the players bet
         double bet = 0;
         boolean validBet = false;
 
@@ -71,6 +74,7 @@ public class BlackjackGame {
         } while (!validBet);
 
         // Game validation for player to continue to play and not having points over
+
         while (player.canPlay() && wantToPlay() && !gameEnded()) {
             giveNewCard(player);
 
@@ -78,9 +82,7 @@ public class BlackjackGame {
 
         // Validation for dealer to play if game has not ended
         if (!gameEnded()) {
-            // first, turn the hidden card
-            giveCard(dealer, hiddenDealerCard);
-            // then play until either wins
+            giveCard(dealer, dealerFlippedCard);
             while (dealer.canPlay() && !gameEnded()) {
                 giveNewCard(dealer);
             }
@@ -112,11 +114,23 @@ public class BlackjackGame {
     }
 
     //Give player card for move
+    public void giveNewCard(Player p) {
+        giveCard(p, deckOfCards.removeOneCard());
+    }
+
     public void giveCard(Player p, Card c) {
         Move move = new Move(p, c);
         moves.add(move);
         p.addCard(move.getCard());
-        System.out.println(move.toString() + "   (" + Player.getTotalPoints(p.getHand()) + ")");
+        System.out.println(move.toString() + "-Hand is worth[" + p.getTotalPoints(p.getHand()) + "]");
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Player getDealer() {
+        return dealer;
     }
 
     //Game ending functionality

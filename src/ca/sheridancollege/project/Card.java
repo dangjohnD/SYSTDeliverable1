@@ -1,6 +1,7 @@
 package ca.sheridancollege.project;
 
 public class Card {
+
     public enum Suit {
         CLOVERS, DIAMONDS, SPADES, HEARTS
     }
@@ -30,11 +31,12 @@ public class Card {
         if (getPoint().ordinal() <= Point.C_10.ordinal()) {
             return getPoint().ordinal() + 1;
         } else {
-            return 10; // suits		
+            // value of face cards
+            return 10;		
         }
     }
 
     public String toString() {
-        return suit.name() + "-" + point.name();
+        return point.name() + " of " + suit.name();
     }
 }
