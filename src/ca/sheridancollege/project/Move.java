@@ -1,15 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ca.sheridancollege.project;
 
-/**
- *
- * @author okami
- */
 public class Move {
-    // a move is done by the dealer or the player.
 
     private Player person;
     private Card card;
@@ -28,6 +19,7 @@ public class Move {
     }
 
     public String toString() {
-        return person.getClass().getSimpleName() + " " + person.toString() + " take Card " + card.toString() + " worth " + card.getPoints() + " points";
+        return "Move: " + person.getClass().getSimpleName() + " " + 
+        person.toString() + " take Card " + card.toString() + " for " + card.getPoints() + " points";
     }
 }

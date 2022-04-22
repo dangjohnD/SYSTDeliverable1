@@ -1,17 +1,6 @@
-/**
- * SYST 17796 Project Base code.
- * Students can modify and extend to implement their game.
- * Add your name as an author and the date!
- */
 package ca.sheridancollege.project;
 import java.util.*;
-/**
- * A class that models each Player in the game. Players have an identifier, which should be unique.
- *
- * @author dancye
- * @author Paul Bonenfant Jan 2020
- * @author Suhjin Min Feb 17 2022
- */
+
 public abstract class Player {
 
     private String name;
@@ -21,7 +10,6 @@ public abstract class Player {
 
     public Player(String name) {
         this.name = name;
-
     }
 
     public ArrayList<Card> getHand() {
@@ -43,22 +31,15 @@ public abstract class Player {
     }
  
     public static int getTotalPoints(ArrayList<Card> hand) {
-        // count the points in two ways and select the best for the player 
-        int max = 0;
-        int min = 0;
+        int minTotal = 0; 
+        int maxTotal = 0; 
         for (Card c : hand) {
             int points = c.getPoints();
-            min += points;
-            // this would be the count with ACE counting for 11 points
-            if (c.getPoint() == Card.Point.C_ACE_1){
-                max += 11;
-            }else{
-                max+= points;
-            }
+            minTotal += points;
+            maxTotal += (c.getPoint() == Card.Point.C_ACE_1) ? 11 : points;
         }
-        if (max > 21){
-            return min;
-        }else return max;
+
+        return (maxTotal > 21) ? minTotal : maxTotal;
     }
 
     public void addCard(Card card) {
