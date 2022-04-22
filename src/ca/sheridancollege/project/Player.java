@@ -17,9 +17,7 @@ public abstract class Player {
     private String name;
     private ArrayList<Card> hand = new ArrayList<>();
 
-    abstract boolean canPlay();
 
-    abstract boolean wantToPlay();
 
     public Player(String name) {
         this.name = name;
@@ -38,19 +36,29 @@ public abstract class Player {
         return name;
     }
 
+    abstract boolean canPlay();
+
+    public boolean wantToPlay(){
+        return true;
+    }
+ 
     public static int getTotalPoints(ArrayList<Card> hand) {
         // count the points in two ways and select the best for the player 
-        int minTotal = 0; // with C_ACE worth 1 point
-        int maxTotal = 0; // with C_ACE worth 11 point
+        int max = 0;
+        int min = 0;
         for (Card c : hand) {
             int points = c.getPoints();
-            minTotal += points;
+            min += points;
             // this would be the count with ACE counting for 11 points
-            maxTotal += (c.getPoint() == Card.Point.C_ACE_1) ? 11 : points;
+            if (c.getPoint() == Card.Point.C_ACE_1){
+                max += 11;
+            }else{
+                max+= points;
+            }
         }
-        // return the most favorable outcome. If considering C_ACE is worth 11 points pushes the 
-        // total count beyond 21, return the count where it is worth 1 instead.
-        return (maxTotal > 21) ? minTotal : maxTotal;
+        if (max > 21){
+            return min;
+        }else return max;
     }
 
     public void addCard(Card card) {

@@ -21,13 +21,6 @@ public class BlackjackPlayer extends Player {
         return getTotalPoints(this.getHand()) < 21;
     }
 
-    @Override
-    boolean wantToPlay() {
-        // here is where the player's strategy could be elaborated. The simple strategy
-        // is to keep playing as long as the count is lower than 17.
-        return getTotalPoints(this.getHand()) < 17;
-    }
-
     public int getBank() {
         return bank;
     }

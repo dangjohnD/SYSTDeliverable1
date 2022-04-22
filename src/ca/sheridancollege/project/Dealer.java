@@ -14,14 +14,14 @@ public class Dealer extends Player {
         super(name);
     }
 
+    // Dealer has no strategy, will always play
     @Override
-    public boolean canPlay() {
-        return getTotalPoints(this.getHand()) < 21;
+    public boolean wantToPlay() {
+        return true;
     }
 
     @Override
-    public boolean wantToPlay() {
-        // dealer will keep playing until either he beats the player or goes over.
-        return true;
+    public boolean canPlay() {
+        return getTotalPoints(this.getHand()) < 21;
     }
 }

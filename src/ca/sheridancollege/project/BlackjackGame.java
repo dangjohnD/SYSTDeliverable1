@@ -10,37 +10,33 @@ package ca.sheridancollege.project;
  */
 import java.util.*;
 
-public class BlackjackGame extends Game{
+public class BlackjackGame extends Game {
 
-    // the deck of cards we will use
-    private Deck deckOfCards = new Deck();
-    private Player dealer = new Dealer("DealerMan");
+    // initalize our variables player, dealer,deck and moves
+    private Player dealer = new Dealer("Dealer Kyle");
+    private Card dealerFlippedCard = null;
     private BlackjackPlayer player = null;
-    // we will record the moves in the order they are played
-    // this could be useful for future extensions
+    private Deck deckOfCards = new Deck();
     private ArrayList<Move> moves = new ArrayList<>();
-    // the hidden card held by the dealer at the beginning of the game
-    private Card hiddenDealerCard = null;
+
+    public BlackjackGame(String playerName) {
+        player = new BlackjackPlayer(playerName);
+    }
 
     public static void main(String[] args) {
         BlackjackGame g = new BlackjackGame("John Dang"); // 
         g.play();
     }
 
-    public BlackjackGame(String playerName) {
-        player = new BlackjackPlayer(playerName);
-    }
-
     public void play() {
         Scanner input = new Scanner(System.in);
 
-        // the card flipped over given to player
-        hiddenDealerCard = deckOfCards.removeOneCard();
+        dealerFlippedCard = deckOfCards.removeOneCard();
 
-        // give a card to each player
         giveNewCard(dealer);
         giveNewCard(player);
 
+        // get the players bet
         double bet = 0;
         boolean validBet = false;
         do {
@@ -61,28 +57,21 @@ public class BlackjackGame extends Game{
             }
         } while (!validBet);
 
-        // let the player play as long as he wants and we are not over
+        // ask the player if they want to hit or stand and check their total
         while (player.canPlay() && wantToPlay() && !gameEnded()) {
             giveNewCard(player);
 
         }
 
-        // if the player did not get over (and the game ended), let the dealer play
+        // let the dealer play if player did not go over 21
         if (!gameEnded()) {
-            // first, turn the hidden card
-            giveCard(dealer, hiddenDealerCard);
-            // then play until either wins
+            giveCard(dealer, dealerFlippedCard);
             while (dealer.canPlay() && !gameEnded()) {
                 giveNewCard(dealer);
             }
         }
 
-        // show who won
         declareWinner(bet);
-    }
-
-    public void giveNewCard(Player p) {
-        giveCard(p, deckOfCards.removeOneCard());
     }
 
     public boolean wantToPlay() {
@@ -100,11 +89,23 @@ public class BlackjackGame extends Game{
         return wantToPlay;
     }
 
+    public void giveNewCard(Player p) {
+        giveCard(p, deckOfCards.removeOneCard());
+    }
+
     public void giveCard(Player p, Card c) {
         Move move = new Move(p, c);
         moves.add(move);
         p.addCard(move.getCard());
-        System.out.println(move.toString() + "   (" + p.getTotalPoints(p.getHand()) + ")");
+        System.out.println(move.toString() + "-Hand is worth[" + p.getTotalPoints(p.getHand()) + "]");
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Player getDealer() {
+        return dealer;
     }
 
     public boolean gameEnded() {
@@ -114,14 +115,6 @@ public class BlackjackGame extends Game{
             return true;
         }
         return false;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public Player getDealer() {
-        return dealer;
     }
 
     public int checkBet(double bet) {
