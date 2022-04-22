@@ -14,9 +14,19 @@ public class Card {
     }
 
     public enum Point {
-        C_ACE_1, C_2, C_3, C_4, C_5, C_6, C_7, C_8, C_9, C_10, C_JACK, C_QUEEN, C_KING
+        C_ACE_1(1), C_2(2), C_3(3), C_4(4), C_5(5), C_6(6),
+        C_7(7), C_8(8), C_9(9), C_10(10), C_JACK(10), C_QUEEN(10), C_KING(10);
+        
+        private int value;
+        
+        private Point(final int value){
+            this.value=value;
+        }
+        
+        public int getValue(){
+            return value;
+        }
     }
-    public static final int FIRST_SUIT_ORDINAL = 10;
 
     private Suit suit;
     private Point point;
@@ -35,11 +45,7 @@ public class Card {
     }
 
     public int getPoints() {
-        if (getPoint().ordinal() <= Point.C_10.ordinal()) {
-            return getPoint().ordinal() + 1;
-        } else {
-            return 10;
-        }
+        return point.getValue();
     }
 
     public String toString() {
