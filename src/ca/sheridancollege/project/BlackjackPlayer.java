@@ -5,8 +5,10 @@
 package ca.sheridancollege.project;
 
 /**
- *
- * @author okami
+ * Date: 2022-04-16 Authors: Suhjin Min 
+ * John Dang 
+ * Oldri Kecaj 
+ * Qiong Liao
  */
 import java.util.*;
 public class BlackjackPlayer extends Player {

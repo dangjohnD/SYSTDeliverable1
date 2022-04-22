@@ -7,14 +7,13 @@
 package ca.sheridancollege.project;
 
 /**
- * A class to be used as the base Card class for the project. Must be general enough to be instantiated for any Card
- * game. Students wishing to add to the code should remember to add themselves as a modifier.
- *
- * @author dancye
- * @author Suhjin_Min
+ * Date: 2022-04-16 Authors: 
+ * Suhjin Min 
+ * John Dang 
+ * Oldri Kecaj 
+ * Qiong Liao
  */
-public  class Card {
-    //default modifier for child classes
+public class Card {
 
     public enum Suit {
         CLOVERS, DIAMONDS, SPADES, HEARTS
@@ -45,8 +44,7 @@ public  class Card {
         if (getPoint().ordinal() <= Point.C_10.ordinal()) {
             return getPoint().ordinal() + 1;
         } else {
-            // value of face cards
-            return 10;		
+            return 10;
         }
     }
 

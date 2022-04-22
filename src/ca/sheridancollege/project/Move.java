@@ -6,7 +6,10 @@ package ca.sheridancollege.project;
 
 /**
  *
- * @author okami
+ * Date: 2022-04-16 Authors: Suhjin Min 
+ * John Dang 
+ * Oldri Kecaj 
+ * Qiong Liao
  */
 public class Move {
     // a move is done by the dealer or the player.
@@ -28,6 +31,7 @@ public class Move {
     }
 
     public String toString() {
-        return person.getClass().getSimpleName() + " " + person.toString() + " take Card " + card.toString() + " worth " + card.getPoints() + " points";
+        return person.getClass().getSimpleName() + " " + person.toString()
+                + " take Card " + card.toString() + " worth " + card.getPoints() + " points";
     }
 }

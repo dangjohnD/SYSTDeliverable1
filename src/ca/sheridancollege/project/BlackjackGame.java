@@ -5,38 +5,46 @@
 package ca.sheridancollege.project;
 
 /**
- *
- * @author okami
+ * Date: 2022-04-16 Authors: Suhjin Min 
+ * John Dang 
+ * Oldri Kecaj 
+ * Qiong Liao
  */
 import java.util.*;
 
 public class BlackjackGame extends Game {
 
-    // initalize our variables player, dealer,deck and moves
-    private Player dealer = new Dealer("Dealer Kyle");
+    // Intialize variables
+    private final Player dealer = new Dealer("Dealer Kyle");
+    // Hidden card for dealer
     private Card dealerFlippedCard = null;
     private BlackjackPlayer player = null;
-    private Deck deckOfCards = new Deck();
-    private ArrayList<Move> moves = new ArrayList<>();
+    private final Deck deck;
+    // Record moves
+    private final ArrayList<Move> moves = new ArrayList<>();
 
+    // Create a player in the constructor
     public BlackjackGame(String playerName) {
+        this.deck = new Deck();
         player = new BlackjackPlayer(playerName);
     }
 
+    //Main method
     public static void main(String[] args) {
         BlackjackGame g = new BlackjackGame("John Dang"); // 
         g.play();
     }
 
+    // Play Method
     public void play() {
         Scanner input = new Scanner(System.in);
 
-        dealerFlippedCard = deckOfCards.removeOneCard();
+        dealerFlippedCard = deck.removeOneCard();
 
         giveNewCard(dealer);
         giveNewCard(player);
 
-        // get the players bet
+        // Betting functionality
         double bet = 0;
         boolean validBet = false;
         do {
@@ -57,13 +65,13 @@ public class BlackjackGame extends Game {
             }
         } while (!validBet);
 
-        // ask the player if they want to hit or stand and check their total
+        // Game validation for player to continue to play and not having points over
         while (player.canPlay() && wantToPlay() && !gameEnded()) {
             giveNewCard(player);
 
         }
 
-        // let the dealer play if player did not go over 21
+        // Validation for dealer to play if game has not ended
         if (!gameEnded()) {
             giveCard(dealer, dealerFlippedCard);
             while (dealer.canPlay() && !gameEnded()) {
@@ -71,9 +79,11 @@ public class BlackjackGame extends Game {
             }
         }
 
+        //Display winner
         declareWinner(bet);
     }
 
+    // Ask player if they want to play
     public boolean wantToPlay() {
         Scanner input = new Scanner(System.in);
         System.out.println("do you want to hit or stand(h or s)");
@@ -81,42 +91,43 @@ public class BlackjackGame extends Game {
         String playerInput = input.next();
 
         boolean wantToPlay = false;
-        if (playerInput.equals("h")) {
-            wantToPlay = true;
-        } else {
-            wantToPlay = false;
-        }
+        wantToPlay = playerInput.equals("h");
         return wantToPlay;
     }
 
     public void giveNewCard(Player p) {
-        giveCard(p, deckOfCards.removeOneCard());
+        giveCard(p, deck.removeOneCard());
     }
 
     public void giveCard(Player p, Card c) {
         Move move = new Move(p, c);
         moves.add(move);
         p.addCard(move.getCard());
-        System.out.println(move.toString() + "-Hand is worth[" + p.getTotalPoints(p.getHand()) + "]");
+        System.out.println(move.toString() + "-Hand is worth["
+                + Player.getTotalPoints(p.getHand()) + "]");
     }
 
+    // Return player
     public Player getPlayer() {
         return player;
     }
 
+    // Return dealer
     public Player getDealer() {
         return dealer;
     }
 
+    //Game ending functionality
     public boolean gameEnded() {
-        if (player.getTotalPoints(player.getHand()) >= 21) {
+        if (BlackjackPlayer.getTotalPoints(player.getHand()) >= 21) {
             return true;
-        } else if (dealer.getTotalPoints(dealer.getHand()) >= 21) {
+        } else if (Player.getTotalPoints(dealer.getHand()) >= 21) {
             return true;
         }
         return false;
     }
 
+    // Check the current bet
     public int checkBet(double bet) {
         if (bet < player.getBank()) {
             return 1;
@@ -127,14 +138,15 @@ public class BlackjackGame extends Game {
         }
     }
 
+    // Declare winner of game
     public int declareWinner(double bet) {
-        if (player.getTotalPoints(player.getHand()) >= 21) {
-            System.out.println(player.getName() + " has lost... " + player.getTotalPoints(player.getHand()) + " > 21");
+        if (BlackjackPlayer.getTotalPoints(player.getHand()) >= 21) {
+            System.out.println(player.getName() + " has lost... " + BlackjackPlayer.getTotalPoints(player.getHand()) + " > 21");
             System.out.println("You lost $" + bet);
             System.out.println("Your bank total is now $" + (1000 - bet));
             return 1;
-        } else if (dealer.getTotalPoints(dealer.getHand()) >= 21) {
-            System.out.println(dealer.getName() + " has lost... " + dealer.getTotalPoints(dealer.getHand()) + " > 21");
+        } else if (Player.getTotalPoints(dealer.getHand()) >= 21) {
+            System.out.println(dealer.getName() + " has lost... " + Player.getTotalPoints(dealer.getHand()) + " > 21");
             return 1;
         } else {
             Player winner = (player.getTotalPoints(player.getHand()) > dealer.getTotalPoints(dealer.getHand())) ? player : dealer;
