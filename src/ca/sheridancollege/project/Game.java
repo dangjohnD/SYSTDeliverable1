@@ -11,6 +11,6 @@ public abstract class Game {
 
     public abstract void play();
 
-    public abstract void declareWinner();
+    public abstract int declareWinner(double bet);
 
 }
