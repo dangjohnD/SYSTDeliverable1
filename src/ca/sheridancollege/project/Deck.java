@@ -19,7 +19,6 @@ public class Deck {
     }
 
     public void createDeck() {
-        // create a deck by inserting one card of each Point for each Suit
         for (Card.Suit s : Card.Suit.values()) {
             for (Card.Point p : Card.Point.values()) {
                 cards.add(new Card(s, p));

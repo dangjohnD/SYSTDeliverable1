@@ -28,6 +28,6 @@ public class Move {
     }
 
     public String toString() {
-        return "Move: " + person.getClass().getSimpleName() + " " + person.toString() + " take Card " + card.toString() + " for " + card.getPoints() + " points";
+        return person.getClass().getSimpleName() + " " + person.toString() + " take Card " + card.toString() + " worth " + card.getPoints() + " points";
     }
 }
