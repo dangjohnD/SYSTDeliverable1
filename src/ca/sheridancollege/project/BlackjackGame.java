@@ -1,8 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ca.sheridancollege.project;
+import java.util.*;
+/*
+
+Date: 
+2022-04-16
+
+Authors:
+Suhjin Min
+John Dang
+Oldri Kecaj
+Qiong Liao
 
 /**
  * Date: 2022-04-16 Authors: Suhjin Min 
@@ -10,7 +17,6 @@ package ca.sheridancollege.project;
  * Oldri Kecaj 
  * Qiong Liao
  */
-import java.util.*;
 
 public class BlackjackGame extends Game {
 
@@ -47,6 +53,8 @@ public class BlackjackGame extends Game {
         // Betting functionality
         double bet = 0;
         boolean validBet = false;
+
+        //Betting functionality
         do {
             System.out.println("How much do you want to bet?");
             System.out.println("You have" + player.getBank());
@@ -95,6 +103,7 @@ public class BlackjackGame extends Game {
         return wantToPlay;
     }
 
+    //Give player card for move
     public void giveNewCard(Player p) {
         giveCard(p, deck.removeOneCard());
     }
@@ -149,8 +158,8 @@ public class BlackjackGame extends Game {
             System.out.println(dealer.getName() + " has lost... " + Player.getTotalPoints(dealer.getHand()) + " > 21");
             return 1;
         } else {
-            Player winner = (player.getTotalPoints(player.getHand()) > dealer.getTotalPoints(dealer.getHand())) ? player : dealer;
-            System.out.println(winner.getName() + " wins... " + winner.getTotalPoints(winner.getHand()));
+            Player winner = (Player.getTotalPoints(player.getHand()) > Player.getTotalPoints(dealer.getHand())) ? player : dealer;
+            System.out.println(winner.getName() + " wins... " + Player.getTotalPoints(winner.getHand()));
             if (winner == player) {
                 return 1;
             } else {

@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ca.sheridancollege.project;
-
 /**
  *
  * Date: 2022-04-16 Authors: Suhjin Min 
@@ -12,7 +7,6 @@ package ca.sheridancollege.project;
  * Qiong Liao
  */
 public class Move {
-    // a move is done by the dealer or the player.
 
     private Player person;
     private Card card;
