@@ -10,12 +10,6 @@ Suhjin Min
 John Dang
 Oldri Kecaj
 Qiong Liao
-
-/**
- * Date: 2022-04-16 Authors: Suhjin Min 
- * John Dang 
- * Oldri Kecaj 
- * Qiong Liao
  */
 
 public class BlackjackGame extends Game {
@@ -148,14 +142,18 @@ public class BlackjackGame extends Game {
     }
 
     // Declare winner of game
+    @Override
     public int declareWinner(double bet) {
         if (BlackjackPlayer.getTotalPoints(player.getHand()) >= 21) {
-            System.out.println(player.getName() + " has lost... " + BlackjackPlayer.getTotalPoints(player.getHand()) + " > 21");
+            System.out.println(player.getName() + " has lost... " 
+                    + BlackjackPlayer.getTotalPoints(player.getHand()) 
+                    + " > 21");
             System.out.println("You lost $" + bet);
             System.out.println("Your bank total is now $" + (1000 - bet));
             return 1;
         } else if (Player.getTotalPoints(dealer.getHand()) >= 21) {
-            System.out.println(dealer.getName() + " has lost... " + Player.getTotalPoints(dealer.getHand()) + " > 21");
+            System.out.println(dealer.getName() + " has lost... " 
+                    + Player.getTotalPoints(dealer.getHand()) + " > 21");
             return 1;
         } else {
             Player winner = (Player.getTotalPoints(player.getHand()) > Player.getTotalPoints(dealer.getHand())) ? player : dealer;

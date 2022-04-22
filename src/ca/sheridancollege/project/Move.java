@@ -25,7 +25,7 @@ public class Move {
     }
 
     public String toString() {
-        return person.getClass().getSimpleName() + " " + person.toString()
-                + " take Card " + card.toString() + " worth " + card.getPoints() + " points";
+        return person + " takes Card " + card.toString() 
+                + " worth " + card.getPoints() + " points";
     }
 }
