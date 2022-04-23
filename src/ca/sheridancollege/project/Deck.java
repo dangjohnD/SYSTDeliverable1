@@ -1,11 +1,12 @@
 package ca.sheridancollege.project;
 import java.util.*;
 
-public class Deck {
+public class Deck extends GroupOfCards{
 
     List<Card> cards = new ArrayList<>();
 
     public Deck() {
+        super();
         createDeck();
         shuffle();
     }
@@ -24,7 +25,7 @@ public class Deck {
 
     public Card removeOneCard() {
         if (cards.size() == 0) {
-            throw new RuntimeException("No more cards");
+            throw new RuntimeException("0 Cards");
         }
         Card card = cards.remove(cards.size() - 1);
         return card;

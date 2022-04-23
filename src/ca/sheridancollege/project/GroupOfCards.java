@@ -6,8 +6,7 @@ public class GroupOfCards {
     private ArrayList<Card> cards;
     private int size;
 
-    public GroupOfCards(int size) {
-        this.size = size;
+    public GroupOfCards() {
     }
 
     public ArrayList<Card> getCards() {

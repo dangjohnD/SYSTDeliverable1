@@ -68,33 +68,30 @@ public class BlackjackGame extends Game {
         } while (!validBet);
 
         // Game validation for player to continue to play and not having points over
-        while (player.canPlay() && wantToPlay() && !gameEnded()) {
-            giveNewCard(player);
-
+        while (player.canPlay() && !gameEnded()) {
+            System.out.println("do you want to hit or stand(h or s)");
+            String choice = input.nextLine();
+            if (wantToPlay(choice)){
+                giveNewCard(player);
+            }
         }
 
         // Validation for dealer to play if game has not ended
         if (!gameEnded()) {
             giveCard(dealer, dealerFlippedCard);
-            while (dealer.canPlay() && !gameEnded()) {
+            while (dealer.canPlay()) {
+                if (!gameEnded()){
                 giveNewCard(dealer);
+                }
             }
         }
-
         //Display winner
         declareWinner(bet);
     }
 
     // Ask player if they want to play
-    public boolean wantToPlay() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("do you want to hit or stand(h or s)");
-
-        String playerInput = input.next();
-
-        boolean wantToPlay = false;
-        wantToPlay = playerInput.equals("h");
-        return wantToPlay;
+    public boolean wantToPlay(String choice) {
+        return choice.equals("h");
     }
 
     //Give player card for move
@@ -144,6 +141,7 @@ public class BlackjackGame extends Game {
     // Declare winner of game
     @Override
     public int declareWinner(double bet) {
+        Player winner = null;
         if (BlackjackPlayer.getTotalPoints(player.getHand()) >= 21) {
             System.out.println(player.getName() + " has lost... " 
                     + BlackjackPlayer.getTotalPoints(player.getHand()) 
@@ -156,7 +154,11 @@ public class BlackjackGame extends Game {
                     + Player.getTotalPoints(dealer.getHand()) + " > 21");
             return 1;
         } else {
-            Player winner = (Player.getTotalPoints(player.getHand()) > Player.getTotalPoints(dealer.getHand())) ? player : dealer;
+            if(Player.getTotalPoints(player.getHand()) > Player.getTotalPoints(dealer.getHand())){
+                winner=player;
+            }else{
+                winner=dealer;
+            }
             System.out.println(winner.getName() + " wins... " + Player.getTotalPoints(winner.getHand()));
             if (winner == player) {
                 return 1;

@@ -2,9 +2,9 @@ package ca.sheridancollege.project;
 
 /**
  *
- * Date: 2022-04-16 Authors: Suhjin Min 
- * John Dang 
- * Oldri Kecaj 
+ * Date: 2022-04-16 Authors: Suhjin Min
+ * John Dang
+ * Oldri Kecaj
  * Qiong Liao
  */
 public class Dealer extends Player {
