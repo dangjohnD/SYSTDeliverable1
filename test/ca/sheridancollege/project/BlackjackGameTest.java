@@ -28,7 +28,7 @@ public class BlackjackGameTest {
     public void testGiveCardGood() {
         //test givecard when card results in hand under 21
         System.out.println("giveCard");
-        Card c = new Card(Card.Suit.CLOVERS, Card.Point.C_10);
+        Card c = new Card(Card.Suit.CLUBS, Card.Point.C_10);
         BlackjackGame instance = new BlackjackGame("Tester");
         instance.giveCard(instance.getPlayer(), c);
         ArrayList<Card> cards = new ArrayList<>();
@@ -40,9 +40,9 @@ public class BlackjackGameTest {
     public void testGiveCardBad() {
         //test givecard when card results in hand over 21
         System.out.println("giveCard");
-        Card c = new Card(Card.Suit.CLOVERS, Card.Point.C_10);
-        Card c2 = new Card(Card.Suit.CLOVERS, Card.Point.C_QUEEN);
-        Card c3 = new Card(Card.Suit.CLOVERS, Card.Point.C_7);
+        Card c = new Card(Card.Suit.CLUBS, Card.Point.C_10);
+        Card c2 = new Card(Card.Suit.CLUBS, Card.Point.C_QUEEN);
+        Card c3 = new Card(Card.Suit.CLUBS, Card.Point.C_7);
         BlackjackGame instance = new BlackjackGame("Tester");
         instance.giveCard(instance.getPlayer(), c);
         instance.giveCard(instance.getPlayer(), c2);
@@ -58,8 +58,8 @@ public class BlackjackGameTest {
     public void testGiveCardBoundary() {
         //test givecard when card results in hand exactly 21
         System.out.println("giveCard");
-        Card c = new Card(Card.Suit.CLOVERS, Card.Point.C_10);
-        Card c2 = new Card(Card.Suit.CLOVERS, Card.Point.C_ACE_1);
+        Card c = new Card(Card.Suit.CLUBS, Card.Point.C_10);
+        Card c2 = new Card(Card.Suit.CLUBS, Card.Point.C_ACE_1);
         BlackjackGame instance = new BlackjackGame("Tester");
         instance.giveCard(instance.getPlayer(), c);
         instance.giveCard(instance.getPlayer(), c2);
@@ -76,8 +76,8 @@ public class BlackjackGameTest {
     public void testDeclareWinnerBad() {
         // Player hand is worth less than dealer
         System.out.println("DeclareWinner");
-        Card c = new Card(Card.Suit.CLOVERS, Card.Point.C_10);
-        Card c2 = new Card(Card.Suit.CLOVERS, Card.Point.C_9);
+        Card c = new Card(Card.Suit.CLUBS, Card.Point.C_10);
+        Card c2 = new Card(Card.Suit.CLUBS, Card.Point.C_9);
         double bet = 100;
         BlackjackGame instance = new BlackjackGame("Tester");
         instance.giveCard(instance.getDealer(), c);
@@ -91,8 +91,8 @@ public class BlackjackGameTest {
     public void testDeclareWinnerGood() {
         // Player hand is worth more than dealer
         System.out.println("DeclareWinner");
-        Card c = new Card(Card.Suit.CLOVERS, Card.Point.C_10);
-        Card c2 = new Card(Card.Suit.CLOVERS, Card.Point.C_9);
+        Card c = new Card(Card.Suit.CLUBS, Card.Point.C_10);
+        Card c2 = new Card(Card.Suit.CLUBS, Card.Point.C_9);
         double bet = 100;
         BlackjackGame instance = new BlackjackGame("Tester");
         instance.giveCard(instance.getDealer(), c2);
@@ -106,7 +106,7 @@ public class BlackjackGameTest {
     public void testDeclareWinnerBoundary() {
         // Player hand is worth the same as dealer, house always wins
         System.out.println("DeclareWinner");
-        Card c = new Card(Card.Suit.CLOVERS, Card.Point.C_10);
+        Card c = new Card(Card.Suit.CLUBS, Card.Point.C_10);
         Card c2 = new Card(Card.Suit.HEARTS, Card.Point.C_10);
         double bet = 100;
         BlackjackGame instance = new BlackjackGame("Tester");
@@ -147,4 +147,70 @@ public class BlackjackGameTest {
         assertEquals(result, resExpected);
     }
 
+    @Test
+    public void testGameEndedGood(){
+        System.out.println("testGameEnded");
+        BlackjackGame instance = new BlackjackGame("Test Player");
+        boolean result = instance.gameEnded();
+        boolean resExpected = false;
+        assertEquals(result, resExpected);
+    }
+
+    @Test
+    public void testGameEndedBad(){
+        System.out.println("testGameEnded");
+        BlackjackGame instance = new BlackjackGame("Test Player");
+        Card c1 = new Card(Card.Suit.CLUBS, Card.Point.C_10);
+        Card c2 = new Card(Card.Suit.CLUBS, Card.Point.C_9);
+        Card c3 = new Card(Card.Suit.CLUBS, Card.Point.C_8);
+        instance.giveCard(instance.getPlayer(), c1);
+        instance.giveCard(instance.getPlayer(), c2);
+        instance.giveCard(instance.getPlayer(), c3);
+        boolean result = instance.gameEnded();
+        boolean resExpected = true;
+        assertEquals(result, resExpected);
+    }
+
+    @Test
+    public void testGameEndedBoundary(){
+        System.out.println("testGameEnded");
+        BlackjackGame instance = new BlackjackGame("Test Player");
+        Card c1 = new Card(Card.Suit.CLUBS, Card.Point.C_10);
+        Card c2 = new Card(Card.Suit.CLUBS, Card.Point.C_ACE_1);
+        instance.giveCard(instance.getPlayer(), c1);
+        instance.giveCard(instance.getPlayer(), c2);
+        boolean result = instance.gameEnded();
+        boolean resExpected = true;
+        assertEquals(result, resExpected);
+    }
+
+    @Test
+    public void testWantToPlayGood(){
+        System.out.println("testWantToPlay");
+        BlackjackGame instance = new BlackjackGame("Test Player");
+        String input = "h";
+        boolean result = instance.wantToPlay(input);
+        boolean resExpected = true;
+        assertEquals(result, resExpected);
+    }
+
+    @Test
+    public void testWantToPlayBad(){
+        System.out.println("testWantToPlay");
+        BlackjackGame instance = new BlackjackGame("Test Player");
+        String input = "s";
+        boolean result = instance.wantToPlay(input);
+        boolean resExpected = false;
+        assertEquals(result, resExpected);
+    }
+    
+    @Test
+    public void testWantToPlayBoundary(){
+        System.out.println("testWantToPlay");
+        BlackjackGame instance = new BlackjackGame("Test Player");
+        String input = "efnwekj";
+        boolean result = instance.wantToPlay(input);
+        boolean resExpected = false;
+        assertEquals(result, resExpected);
+    }
 }

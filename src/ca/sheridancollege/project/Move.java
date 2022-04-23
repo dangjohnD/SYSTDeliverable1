@@ -26,6 +26,6 @@ public class Move {
 
     public String toString() {
         return person + " takes Card " + card.toString() 
-                + " worth " + card.getPoints() + " points";
+                + " worth " + card.getPoints();
     }
 }

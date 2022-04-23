@@ -10,7 +10,7 @@ package ca.sheridancollege.project;
 public class Card {
 
     public enum Suit {
-        CLOVERS, DIAMONDS, SPADES, HEARTS
+        HEARTS, DIAMONDS, SPADES, CLUBS;
     }
 
     public enum Point {

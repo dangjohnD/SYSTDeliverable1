@@ -37,7 +37,7 @@ public class BlackjackPlayerTest {
     public void testGetTotalPointsGood() {
         System.out.println("getTotalPoints");
         ArrayList<Card> hand = new ArrayList<>();
-        Card card  = new Card(Card.Suit.CLOVERS, Card.Point.C_2);
+        Card card  = new Card(Card.Suit.CLUBS, Card.Point.C_2);
         hand.add(card);
         int result = BlackjackPlayer.getTotalPoints(hand);
         int expResult = 2;
@@ -49,9 +49,9 @@ public class BlackjackPlayerTest {
         System.out.println("getTotalPoints");
         ArrayList<Card> hand = new ArrayList<>();
         
-        Card card1  = new Card(Card.Suit.CLOVERS, Card.Point.C_KING);
-        Card card2  = new Card(Card.Suit.CLOVERS, Card.Point.C_QUEEN);
-        Card card3 = new Card(Card.Suit.CLOVERS, Card.Point.C_2);
+        Card card1  = new Card(Card.Suit.CLUBS, Card.Point.C_KING);
+        Card card2  = new Card(Card.Suit.CLUBS, Card.Point.C_QUEEN);
+        Card card3 = new Card(Card.Suit.CLUBS, Card.Point.C_2);
         hand.add(card1);
         hand.add(card2);
         hand.add(card3);
