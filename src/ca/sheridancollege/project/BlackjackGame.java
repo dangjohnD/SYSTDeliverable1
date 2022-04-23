@@ -38,16 +38,14 @@ public class BlackjackGame extends Game {
     // Play Method
     public void play() {
         Scanner input = new Scanner(System.in);
-
         dealerFlippedCard = deck.removeOneCard();
-
-        giveNewCard(dealer);
-        giveNewCard(player);
 
         // Betting functionality
         double bet = 0;
         boolean validBet = false;
 
+        giveCard(dealer, deck.removeOneCard());
+        giveCard(player, deck.removeOneCard());
         //Betting functionality
         do {
             System.out.println("How much do you want to bet?");
